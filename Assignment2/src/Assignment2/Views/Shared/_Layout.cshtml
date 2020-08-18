@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using Assignment2.Models;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- To get W3.css content -->
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    @{
+        var user = (User)ViewData["user"];
+    }
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-dark bg-primary navbar-fixed-top" style="background-color: #ffbf66;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Blog Assigns</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+
+                    @if (user != null)
+                    {
+                        @if (user.RoleId == 2)
+                        {
+                        <li><a class="navbar-brand">@Html.ActionLink("Create Blog", "AddBlogPost", "Home")</a></li>
+                        }
+                        <li><a><span class="glyphicon glyphicon-user"></span> @user.FirstName &nbsp; @user.LastName</a></li>
+                        <li><a class="navbar-brand">@Html.ActionLink("Logout", "Logout", "Home")</a></li>
+                    }
+                    else
+                    {
+                        <li><a class="navbar-brand">@Html.ActionLink("LogIn", "LogIn", "Home")</a></li>
+                        <li><a class="navbar-brand">@Html.ActionLink("Register", "Register", "Home")</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <br /><br />
+    <br /><br />
+
+    <footer class="text-center">
+        <p>
+            <b><i>© 2019 - Assignment 1</i></b><br />
+            <b>
+                <i>
+                    Prabhkirat Singh
+                </i>
+            </b><br />
+            <b>
+                <i>
+                    sing0813@algonquinlive.com
+                </i>
+            </b><br />
+            <b><i>040-786-333</i></b><br />
+
+        </p>
+
+    </footer>
+    <br /><br />
+</body>
+</html>
